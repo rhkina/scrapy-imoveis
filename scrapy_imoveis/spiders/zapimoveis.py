@@ -11,11 +11,23 @@ class ZapImoveis(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
-        content = response.xpath("//article/@data-clickstream").extract()
-        for imovel in content:
-            print('inicio')
+        imoveis = response.xpath("//article/@data-clickstream").extract()
+        print('imoveis')
+        print(imoveis)
+        print('end')
+        class ItemObject:
+            pass
+        item = ItemObject
+        items = []
+        for imovel in imoveis:
+            print('imovel')
             print(imovel)
             print('fim')
-        
+            item=imovel
+            items.append(item)
+        print('items')
+        print(items)
+        print('fim')
+        return(items)
 
         
